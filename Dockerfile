@@ -5,7 +5,16 @@ FROM postgres:latest
 MAINTAINER Damien Clochard <damien.clochard@dalibo.com>
 
 RUN apt-get update \
-    && apt-get install -y build-essential git-core libv8-dev curl postgresql-server-dev-$PG_MAJOR \
+    && apt-get install -y \
+		# Builds utils
+		build-essential \
+		git-core \
+		curl \
+		# required by pgtap
+        libv8-dev \
+ 		postgresql-server-dev-$PG_MAJOR \ 
+		# replace mailx by heirloom-mailx (for CI jobs)
+		heirloom-mailx \
     && rm -rf /var/lib/apt/lists/*
 
 # install pg_prove
