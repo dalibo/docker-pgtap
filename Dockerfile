@@ -8,6 +8,7 @@ RUN apt-get update \
     && apt-get install -y \
 		# Builds utils
 		build-essential \
+        gettext-base \
 		git-core \
 		curl \
 		# required by pgtap
@@ -15,6 +16,7 @@ RUN apt-get update \
  		postgresql-server-dev-$PG_MAJOR \ 
 		# replace mailx by heirloom-mailx (for CI jobs)
 		heirloom-mailx \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # install pg_prove
@@ -26,5 +28,5 @@ RUN curl -LO http://xrl.us/cpanm \
 RUN git clone git://github.com/theory/pgtap.git \
     && cd pgtap \
     && make \
-    && make install
-
+    && make install \
+    && make clean
