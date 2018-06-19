@@ -16,6 +16,7 @@ RUN apt-get update \
  		postgresql-server-dev-$PG_MAJOR \ 
 		# replace mailx by heirloom-mailx (for CI jobs)
 		heirloom-mailx \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # install pg_prove
