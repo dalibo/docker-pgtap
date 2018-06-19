@@ -8,6 +8,7 @@ RUN apt-get update \
     && apt-get install -y \
 		# Builds utils
 		build-essential \
+        gettext-base \
 		git-core \
 		curl \
 		# required by pgtap
